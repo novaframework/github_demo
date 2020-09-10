@@ -14,8 +14,7 @@ index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
                 headers => ?HEADERS},
     case shttpc:get(Url, Options) of
         #{status := {200, _}, body := Body} ->
-            logger:info("~p", [Body]),
-            {ok, [{message, Body}]};
+            {ok, [{repositories, json:decode(Body, [maps])}]};
         Result ->
             logger:warning("did not go well: ~p", [Result]),
             {ok, []}

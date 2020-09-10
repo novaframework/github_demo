@@ -1,5 +1,22 @@
 <html>
 <body>
-<h1>{{message}}</h1>
+<div>
+    <h1>{{ repositories.total_count }}</h1>
+    <table style="widthL100%">
+        <tr>
+            <th>Name</th>
+            <th>Url</th>
+            <th>Stars</th>
+        </tr>
+        {%for repo in repositories.items %}
+        <tr>
+            <td>{{ repo.name }}</td>
+            <td>{{ repo.html_url }}</td>
+            <td>{{ repo.stargazers_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
 </body>
 </html>
