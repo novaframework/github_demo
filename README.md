@@ -79,3 +79,30 @@ In part 2 we will take the json we will get back and make it to an erlang map th
 Here we have changed the github_demo_main.dtl to first print the total_count hat we get back.
 Then we create the table header and after that we user a for that will iterate over all objects that are in repositories item list.
 From that we will pick out the name, html_url and stargazers_count.
+
+We will also need to change the github_main_controller.erl so that it returns a map.
+
+```erlang
+-module(github_demo_main_controller).
+-export([
+         index/1
+        ]).
+
+-define(HEADERS, #{<<"Accept">> => <<"application/vnd.github.mercy-preview+json">>,
+                   <<"User-Agent">> => <<"Awesome-github-demo">>}).
+-define(GITHUB_API, <<"https://api.github.com/search/repositories?q=topic:">>).
+
+index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
+    Url = <<?GITHUB_API/binary, "erlang">>,
+    logger:info("url: ~p", [Url]),
+    Options = #{close => true,
+                headers => ?HEADERS},
+    case shttpc:get(Url, Options) of
+        #{status := {200, _}, body := Body} ->
+            {ok, [{repositories, json:decode(Body, [maps])}]};
+        Result ->
+            {ok, []}
+    end.
+```
+
+Here we can see that we use the json module that we have from jhn_stdlib that will decode the json to a map.
