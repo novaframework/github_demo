@@ -46,7 +46,7 @@ index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
 
 Here we see that we first define two macros, HEADERS and GITHUB_API.
 In index function we use shttpc to make the GET to github to fetch repositories that have erlang in topic.
-We will return message back to the dtl that will print out the body in the page in th <h1>{{message}}</h1>.
+We will return message back to the dtl that will print out the body in the page in th `<h1>{{message}}</h1>`.
 
 ## part 2
 
