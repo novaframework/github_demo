@@ -3,5 +3,5 @@
          index/1
         ]).
 
-index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
+index(_NovaReq) ->
     {ok, [{message, "Nova is running!"}]}.
