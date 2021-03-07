@@ -7,7 +7,7 @@
                    <<"User-Agent">> => <<"Awesome-github-demo">>}).
 -define(GITHUB_API, <<"https://api.github.com/search/repositories?q=topic:">>).
 
-index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
+index(_NovaReq) ->
     Url = <<?GITHUB_API/binary, "erlang">>,   
     logger:info("url: ~p", [Url]),
     Options = #{close => true,
