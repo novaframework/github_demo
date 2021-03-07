@@ -31,7 +31,7 @@ Nova use https://github.com/JanHenryNystrom/jhn_stdlib that have some really goo
                    <<"User-Agent">> => <<"Awesome-github-demo">>}).
 -define(GITHUB_API, <<"https://api.github.com/search/repositories?q=topic:">>).
 
-index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
+index(_NovaReq) ->
     Url = <<?GITHUB_API/binary, "erlang">>,
     logger:info("url: ~p", [Url]),
     Options = #{close => true,
@@ -92,7 +92,7 @@ We will also need to change the github_main_controller.erl so that it returns a 
                    <<"User-Agent">> => <<"Awesome-github-demo">>}).
 -define(GITHUB_API, <<"https://api.github.com/search/repositories?q=topic:">>).
 
-index(#{req := #{method := <<"GET">>}} = _NovaReq) ->
+index(_NovaReq) ->
     Url = <<?GITHUB_API/binary, "erlang">>,
     logger:info("url: ~p", [Url]),
     Options = #{close => true,
